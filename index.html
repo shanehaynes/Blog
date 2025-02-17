@@ -1,0 +1,107 @@
+---
+layout: default
+title: Home
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/assets/main.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="wrapper">
+            <a class="site-title" href="/">My Blog</a>
+            <nav class="site-nav">
+                <a class="page-link" href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <h1>Welcome to My Blog</h1>
+
+            <!-- Subtitle with Random Quote -->
+            <div id="random-quote" style="font-style: italic; margin-bottom: 20px;"></div>
+
+            <!-- Search Bar -->
+            <input type="text" id="search-box" placeholder="Search by tag..." onkeyup="filterPosts()" />
+
+            <div style="display: flex;">
+                <!-- Left Column: Tag List -->
+                <aside style="width: 25%; padding-right: 20px;">
+                    <h3>Tags</h3>
+                    <ul id="tag-list">
+                        {% assign all_tags = "" | split: "," %}
+                        {% for post in site.posts %}
+                            {% for tag in post.tags %}
+                                {% unless all_tags contains tag %}
+                                    {% assign all_tags = all_tags | push: tag %}
+                                {% endunless %}
+                            {% endfor %}
+                        {% endfor %}
+                        {% for tag in all_tags %}
+                            <li><a href="#" onclick="filterByTag('{{ tag }}')">{{ tag }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </aside>
+
+                <!-- Main Content: Blog Posts -->
+                <section style="width: 75%;">
+                    <h2>Recent Posts</h2>
+                    <ul id="post-list">
+                        {% for post in site.posts %}
+                            <li class="post-item" data-tags="{{ post.tags | join: ',' }}">
+                                <a href="{{ post.url }}">{{ post.title }}</a> - <small>{{ post.date | date: "%B %d, %Y" }}</small>
+                                <p>{{ post.excerpt }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
+            <p>© {{ site.time | date: '%Y' }} My Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Search and Quotes -->
+    <script>
+        // Simple tag search filtering
+        function filterPosts() {
+            let input = document.getElementById("search-box").value.toLowerCase();
+            let posts = document.querySelectorAll(".post-item");
+            posts.forEach(post => {
+                let tags = post.getAttribute("data-tags");
+                post.style.display = tags.includes(input) ? "" : "none";
+            });
+        }
+
+        function filterByTag(tag) {
+            document.getElementById("search-box").value = tag;
+            filterPosts();
+        }
+
+        // Random quote generator
+        const quotes = [
+            "The only way to do great work is to love what you do. – Steve Jobs",
+            "Do or do not. There is no try. – Yoda",
+            "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment. – Ralph Waldo Emerson"
+        ];
+
+        document.getElementById("random-quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
+    </script>
+
+</body>
+</html>
