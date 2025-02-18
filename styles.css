@@ -92,8 +92,11 @@ a:hover {
 }
 
 .pagination a, .pagination strong {
-    background-color: #222;
-    color: white;
+    background-color: #f5f5f5;
+    border-color: #222;
+    border-style: solid;
+    border-width: 2px;
+    color: #222;
     padding: 8px 12px;
     margin: 0 5px;
     border-radius: 20px;
@@ -200,6 +203,7 @@ figcaption {
     color: #777;
     margin-top: 5px;
 }
+/* END OF POST STYLING */
 
 /* About Page Styling - Only affects pages with class 'about-page' */
 .about-page .page-content {
