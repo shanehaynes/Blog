@@ -4,7 +4,7 @@ title: Home
 pagination: true
 ---
 
-<h1>Welcome to My Blog</h1>
+<h1>Welcome to Philosophy Incorporated</h1>
 
 <!-- Subtitle with Random Quote -->
 <div id="random-quote" style="font-style: italic; margin-bottom: 20px;"></div>
@@ -16,7 +16,10 @@ pagination: true
             <li>
                 <a href="{{ post.url }}">{{ post.title }}</a> - 
                 <small>{{ post.date | date: "%B %d, %Y" }}</small>
-                <p>{{ post.excerpt }}</p>
+                <p>
+                  {{ post.content | strip_html | truncate: 200, "..." }}
+                </p>
+
             </li>
         {% endfor %}
     </ul>
@@ -47,9 +50,12 @@ pagination: true
 <script>
     // Random quote generator
     const quotes = [
-        "The only way to do great work is to love what you do. – Steve Jobs",
+        "To struggle and to understand, never the last without the first - George Mallory",
         "Do or do not. There is no try. – Yoda",
-        "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment. – Ralph Waldo Emerson"
+        "What we know is a drop, what we do not is an ocean - Isaac Newton",
+        "The struggle itself toward the heights is enough to fill a man’s heart. One must imagine Sisyphus happy. - Albert Camus",
+        "Growth for the sake of growth is the ideology of the cancer cell  - Edward Abbey",
+        "Reason is the slave of the passions - David Hume"
     ];
 
     document.getElementById("random-quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];

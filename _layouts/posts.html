@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<article class="blog-post">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">Published on {{ page.date | date: "%B %d, %Y" }} by {{ page.author }}</p>
+
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    <div class="post-navigation">
+        {% if page.previous %}
+            <a class="prev-post" href="{{ page.previous.url }}">← Previous: {{ page.previous.title }}</a>
+        {% endif %}
+        {% if page.next %}
+            <a class="next-post" href="{{ page.next.url }}">Next: {{ page.next.title }} →</a>
+        {% endif %}
+    </div>
+</article>

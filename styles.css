@@ -1,4 +1,24 @@
 /* General Styles */
+
+/* Navigation Bar Styling */
+nav {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+nav a {
+    font-size: 25px; /* Adjusted smaller font size */
+    font-weight: normal;
+    color: #222;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: #234f1e;
+}
+
 body {
     font-family: "Lora", serif;
     background-color: #f5f5f5;
@@ -43,6 +63,19 @@ header {
     border-bottom: 1px solid #ddd;
 }
 
+#post-list li a {
+    font-family: "Merriweather", serif;
+    font-size: 26px; /* Increased size */
+    font-weight: bold;
+    color: #000; /* Jet black */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+#post-list li a:hover {
+    color: #234f1e; /* Deep green on hover */
+}
+
 a {
     color: #1a1a8e;
     text-decoration: none;
@@ -82,4 +115,114 @@ footer {
 h2{
     text-align: left;
     margin-top: 30px;
+}
+
+/* END OF HOMEPAGE STYLING */
+
+/* BLOG POST STYLING */
+.blog-post {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f5f5f5;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+/* Post Title */
+.post-title {
+    font-family: "Merriweather", serif;
+    font-size: 32px;
+    color: #222;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Post Metadata */
+.post-meta {
+    font-size: 16px;
+    color: #777;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Post Content */
+.post-content {
+    font-family: "Lora", serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #222;
+    text-align: left;
+}
+
+/* Blockquotes */
+.post-content blockquote {
+    border-left: 4px solid #234f1e;
+    padding-left: 15px;
+    font-style: italic;
+    color: #444;
+}
+
+/* Images */
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 6px;
+}
+
+/* Post Navigation */
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.post-navigation a {
+    font-size: 16px;
+    color: #1a1a8e;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.post-navigation a:hover {
+    color: #234f1e;
+}
+
+figure {
+    text-align: center;
+    margin: 20px 0;
+}
+
+figcaption {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* About Page Styling - Only affects pages with class 'about-page' */
+.about-page .page-content {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    text-align: left;
+}
+
+.about-page .page-title {
+    font-family: "Merriweather", serif;
+    font-size: 32px;
+    text-align: center;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.about-page .page-body {
+    font-family: "Lora", serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #222;
 }
