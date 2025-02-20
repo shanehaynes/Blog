@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
-    <link rel="stylesheet" href="{{ "/styles.css" | relative_url }}">
+
+    <!-- Fix CSS Paths -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
 </head>
 <body>
 
     <!-- Header -->
     <header class="site-header">
         <div class="wrapper">
-            <a class="site-title" href="/">Phil. Inc.</a>
+            <!-- Fix Home Link -->
+            <a class="site-title" href="{{ site.baseurl }}/">Phil. Inc.</a>
             <nav class="site-nav">
-                <a class="page-link" href="/about/">About</a>
+                <!-- Fix About Link -->
+                <a class="page-link" href="{{ site.baseurl }}/about/">About</a>
             </nav>
         </div>
     </header>
