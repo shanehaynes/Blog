@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Home
-pagination: true
 ---
 
 <h1>Welcome to Philosophy Incorporated</h1>
@@ -14,7 +13,7 @@ pagination: true
     <ul id="post-list">
         {% for post in paginator.posts %}
             <li>
-                <a href="{{ post.url }}">{{ post.title }}</a> - 
+                <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> -
                 <small>{{ post.date | date: "%B %d, %Y" }}</small>
                 <p>
                   {{ post.content | strip_html | truncate: 200, "..." }}
@@ -28,7 +27,7 @@ pagination: true
 <!-- Pagination Links (Handled by Jekyll) -->
 <div class="pagination" style="text-align: center; margin-top: 20px;">
     {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="prev">← Previous</a>
+         <a href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="prev">← Previous</a>
     {% endif %}
 
     {% for page in (1..paginator.total_pages) %}
@@ -37,12 +36,12 @@ pagination: true
         {% elsif page == 1 %}
             <a href="{{ site.baseurl }}/">{{ page }}</a>  <!-- Redirect Page 1 to Home -->
         {% else %}
-            <a href="{{ site.baseurl }}/page{{ page }}/">{{ page }}</a>
+            <a href="{{ site.baseurl }}/Blog/page{{ page }}/">{{ page }}</a>
         {% endif %}
     {% endfor %}
 
     {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path }}" class="next">Next →</a>
+        <a href="{{ site.baseurl }}{{ paginator.next_page_path }}" class="next">Next →</a>
     {% endif %}
 </div>
 
