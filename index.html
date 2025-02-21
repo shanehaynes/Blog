@@ -36,7 +36,7 @@ title: Home
         {% elsif page == 1 %}
             <a href="{{ site.baseurl }}/">{{ page }}</a>  <!-- Redirect Page 1 to Home -->
         {% else %}
-            <a href="{{ site.baseurl }}/Blog/page{{ page }}/">{{ page }}</a>
+            <a href="{{ site.baseurl }}/page{{ page }}/">{{ page }}</a>
         {% endif %}
     {% endfor %}
 
