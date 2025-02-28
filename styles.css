@@ -156,6 +156,9 @@ h2{
     line-height: 1.6;
     color: #222;
     text-align: left;
+    max-width: 700px; /* Keeps it readable on larger screens */
+    width: 90%; /* Allows it to shrink on smaller screens */
+    margin: 0 auto; /* Centers the content */
 }
 
 /* Blockquotes */
