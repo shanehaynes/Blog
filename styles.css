@@ -54,6 +54,9 @@ header {
     padding: 0;
     width: 700px;
     margin: 30px auto;
+    max-width: 700px; /* Ensures the list doesn't stretch too wide */
+    width: 90%; /* Makes it responsive */
+    margin: 0 auto; /* Centers it */
 }
 
 #post-list li {
