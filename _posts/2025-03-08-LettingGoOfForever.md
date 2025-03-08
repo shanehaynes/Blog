@@ -6,9 +6,9 @@ author: "Shane Haynes"
 ---
 
 <center> "No man ever steps in the same river twice, for it is not the same river and he is not the same man." - Heraclitus </center>
-<br></br>
+
 ***
-<br></br>
+
 In no time is the ephemeral nature of the world more salient than during the shoulder seasons. I write this now at the beginning of spring. Here, the silent, stark being of winter melts towards the abundance and upbringing of spring in an explosion of budding leaves, birdsong, and rushing rivers. It serves as a vivid, yearly reminder, that nothing stays unchanged. Although its drama is most apparent in spring and fall, transience is always at work beneath the surface of our lives, quietly weaving past into present and present into future.
 
 The observation that the universe is ever changing is ancient wisdom. It has roots stretching back at least as far as the 6th century BCE, invoked by thinkers East and West alike. In Western philosophy, it can be found in the words of Heraclitus: all is flux, all is becoming. In the East, the Buddha’s teaching of _anicca_ (impermanence) similarly holds that all compounded phenomena rise and fall. Over centuries, philosophers, mystics, and poets -- disparate in style, context, and culture -- converged on a single observation: the world is not static. It was not until relatively recently that science was able to affirm this. From metabolic processes at the cellular level to planetary dynamics on a cosmic scale, the universe is in constant flux. It all unfolds from perpetual change.
