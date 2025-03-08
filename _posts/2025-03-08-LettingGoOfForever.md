@@ -5,8 +5,6 @@ date: 2025-03-08
 author: "Shane Haynes"
 ---
 
-# Letting Go of Forever
-
 <center> "No man ever steps in the same river twice, for it is not the same river and he is not the same man." - Heraclitus </center>
 
 In no time is the ephemeral nature of the world more salient than during the shoulder seasons. I write this now at the beginning of spring. Here, the silent, stark being of winter melts towards the abundance and upbringing of spring in an explosion of budding leaves, birdsong, and rushing rivers. It serves as a vivid, yearly reminder, that nothing stays unchanged. Although its drama is most apparent in spring and fall, transience is always at work beneath the surface of our lives, quietly weaving past into present and present into future.
