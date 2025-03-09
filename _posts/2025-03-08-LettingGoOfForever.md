@@ -31,5 +31,5 @@ It is worth remembering that to chase immortality, whether by conquering disease
 
 Our day-to-day lives, then, become opportunities to notice how change both humbles and invigorates us. Impermanence need not be a dreary condemnation to oblivion but an ever-present invitation to see ourselves as part of a great, ongoing dance—a dance in which each step appears just long enough to meet the next, and where the vitality of life surges forth not in spite of change, but _because_ of it.
 
-It may be that the surest escape from “forever” is found not by transcending impermanence, but by cherishing it—accepting it as the fuel that moves the world and move us. The seasons will change and so will we. In many ways, the change is the most profound reminder that we truly _are_ alive.
+It may be that the surest escape from “forever” is found not by transcending impermanence, but by cherishing it—accepting it as the fuel that moves the world and moves us. The seasons will change and so will we. In many ways, the change is the most profound reminder that we truly _are_ alive.
 
