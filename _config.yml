@@ -18,6 +18,6 @@ plugins:
 
 # Paginate Settings
 paginate: 5
-paginate_path: "/Blog/page:num/"
+paginate_path: "/page:num/"
 
-permalink: /Blog/:year/:month/:day/:title/
+permalink: /:year/:month/:day/:title/
