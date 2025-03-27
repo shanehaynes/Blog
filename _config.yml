@@ -5,7 +5,7 @@ ancients – when philosophy covered science, politics, and a bunch of other
 intellectual exercises. As such, this blog will have an eclectic assortment of articles.
 
 baseurl: "/Blog" # the subpath of your site
-url: "philosophy-inc.com" # the base hostname & protocol
+url: "https://philosophy-inc.com" # the base hostname & protocol
 
 twitter_username: jekyllrb
 github_username: jekyll
