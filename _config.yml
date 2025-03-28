@@ -7,9 +7,6 @@ intellectual exercises. As such, this blog will have an eclectic assortment of a
 baseurl: "" # the subpath of your site
 url: "https://philosophy-inc.com" # the base hostname & protocol
 
-twitter_username: jekyllrb
-github_username: jekyll
-
 # Build settings
 theme: minima
 plugins:
