@@ -19,6 +19,40 @@ nav a:hover {
     color: #234f1e;
 }
 
+/* Header container */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f5f5f5;
+}
+
+/* Site title on the left */
+.site-title {
+    font-size: 28px;
+    font-family: "Merriweather", serif;
+    font-weight: bold;
+    color: #222;
+    text-decoration: none;
+}
+
+/* Navigation on the right */
+.site-nav a {
+    font-size: 20px;
+    font-weight: normal;
+    color: #222;
+    text-decoration: none;
+    margin-left: 30px;
+    transition: color 0.3s ease-in-out;
+}
+
+.site-nav a:hover {
+    color: #234f1e;
+}
+
+
 body {
     font-family: "Lora", serif;
     background-color: #f5f5f5;
