@@ -59,7 +59,14 @@ header {
 }
 
 .recents{
-    margin-bottom: 3%;
+    max-width: 700px; /* Match the width of your post list */
+    width: 90%;       /* Responsive width */
+    margin: 40px auto 40px auto; /* top margin, centered horizontally */
+    text-align: left; /* aligns to left edge of your post list */
+    font-family: "Merriweather", serif;
+    font-size: 26px;
+    font-weight: bold;
+    color: #222;
 }
 
 #random-quote {
@@ -252,4 +259,5 @@ figcaption {
     font-size: 18px;
     line-height: 1.6;
     color: #222;
+    padding: 20px 80px;
 }
