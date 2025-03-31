@@ -4,37 +4,40 @@
 .site-header {
     padding: 30px 30px;
     border-bottom: 2px solid #090909;
-    background-color: #f5f5f5;
+    background-color: #F8F7F4;
+     /* Add these properties */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Site title on the left */
 .site-title {
     font-size: 28px;
     font-family: "Lora", serif;
-    font-weight: bold;
     color: #222;
     text-decoration: none;
-    text-align: left;
     margin-left: 5%;
 }
+
 .page-link{
     font-size: 28px;
     font-family: "Lora", serif;
-    font-weight: bold;
     color: #222;
     text-decoration: none;
-    text-align: right;
-    margin-left: 5%;
+    margin-right: 5%;
+}
+.page-link:visited{
+    color: #222;
 }
 
-.site-nav a:hover {
+.page-link:hover, .site-title:hover{
     color: #234f1e;
 }
 
-
 body {
     font-family: "Lora", serif;
-    background-color: #f5f5f5;
+    background: #F8F7F4;
     color: #222;
     margin: 0;
     padding: 0;
@@ -48,11 +51,15 @@ body {
 }
 
 header {
-    font-family: "Merriweather", serif;
+    font-family: "Lora", serif;
     font-size: 32px;
     padding: 20px;
     border-bottom: 2px solid #222;
     text-transform: uppercase;
+}
+
+.recents{
+    margin-bottom: 3%;
 }
 
 #random-quote {
@@ -143,9 +150,6 @@ h2{
     max-width: 700px;
     margin: 40px auto;
     padding: 20px;
-    background: #f5f5f5;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
 }
 
 /* Post Title */
