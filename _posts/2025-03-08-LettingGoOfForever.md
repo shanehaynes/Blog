@@ -4,7 +4,7 @@ title: "Letting Go of Forever"
 date: 2025-03-08
 author: "Shane Haynes"
 ---
-
+<br>
 <center> "No man ever steps in the same river twice, for it is not the same river and he is not the same man." - Heraclitus </center>
 <br>
 
