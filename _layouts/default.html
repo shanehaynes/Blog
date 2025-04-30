@@ -1,41 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
 
-    <!-- Fix CSS Paths -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
-    <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
+  <!-- Fix CSS Paths -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
+
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+    const supabaseClient = supabase.createClient(
+      'https://uuyssskuvvhypyxeytnb.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1eXNzc2t1dnZoeXB5eGV5dG5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQwNDMwNjksImV4cCI6MjA1OTYxOTA2OX0.itmpBTE5Z8OjQGkLTER9wrSncqIw2_01fEW7Q3nSg_A'  // Replace with your real anon key
+    );
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const navContainer = document.getElementById("nav-profile-link");
+      if (!navContainer) return;
+
+      const { data: { session } } = await supabaseClient.auth.getSession();
+
+      navContainer.innerHTML = session && session.user
+        ? '<a class="page-link" href="/profile/">Profile</a>'
+        : '<a class="page-link" href="/login/">Login</a>';
+    });
+  </script>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="site-header">
-        <div class="wrapper">
-            <!-- Fix Home Link -->
-            <a class="site-title" href="{{ site.baseurl }}/">Phil. Inc.</a>
-            <nav class="site-nav">
-                <!-- Fix About Link -->
-                <a class="page-link" href="{{ site.baseurl }}/about/">About</a>
-            </nav>
-        </div>
-    </header>
+  <!-- Header -->
+  <header class="site-header">
+    <a class="site-title" href="{{ site.baseurl }}/">Phil. Inc.</a>
+    <span id="nav-profile-link"></span>
+  </header>
 
-    <!-- Main Content -->
-    <main class="page-content">
-        <div class="wrapper">
-            {{ content }}
-        </div>
-    </main>
+  <!-- Main Content -->
+  <main class="page-content">
+    <div class="wrapper">
+      {{ content }}
+    </div>
+  </main>
 
-    <!-- Custom Footer -->
-    <footer class="site-footer">
-        <div class="wrapper">
-            <p>© {{ site.time | date: '%Y' }} Philosophy Incorporated. All rights reserved.</p>
-        </div>
-    </footer>
+  <!-- Custom Footer -->
+  <footer class="site-footer">
+    <a class="page-link" href="{{ site.baseurl }}/about/">About the Authors</a>
+    <div class="wrapper">
+      <p>© {{ site.time | date: '%Y' }} Philosophy Incorporated. All rights reserved.</p>
+    </div>
+  </footer>
 
+  <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Commenting Logic -->
+  <script>
+    const postSlug = window.location.pathname;
+
+    async function loadComments() {
+      const { data, error } = await supabaseClient
+        .from('comments')
+        .select('*')
+        .eq('post_slug', postSlug)
+        .order('created_at', { ascending: true });
+
+      const list = document.getElementById('comment-list');
+      if (!list) return;
+      list.innerHTML = '';
+
+      if (data) {
+        data.forEach(comment => {
+          const el = document.createElement('div');
+          el.className = 'comment';
+          el.innerHTML = `
+            <p>${comment.content}</p>
+            <span>${new Date(comment.created_at).toLocaleString()}</span>
+          `;
+          list.appendChild(el);
+        });
+      }
+    }
+
+    async function checkAuthAndShowForm() {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      const form = document.getElementById('comment-form');
+      if (session && session.user && form) {
+        form.style.display = 'block';
+      }
+    }
+
+    async function submitComment() {
+      const input = document.getElementById('comment-input');
+      const message = document.getElementById('comment-message');
+      const content = input.value;
+
+      const { data: { session } } = await supabaseClient.auth.getSession();
+
+      if (!session) {
+        message.textContent = '❌ You must be logged in to comment.';
+        return;
+      }
+
+      const { error } = await supabaseClient.from('comments').insert([
+        {
+          post_slug: postSlug,
+          user_id: session.user.id,
+          content: content
+        }
+      ]);
+
+      if (error) {
+        message.textContent = '❌ ' + error.message;
+      } else {
+        message.textContent = '✅ Comment posted!';
+        input.value = '';
+        loadComments();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadComments();
+      checkAuthAndShowForm();
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,79 @@
+---
+layout: default
+title: Profile
+permalink: /profile/
+---
+
+<div class="profile-page">
+  <h1>Your Profile:</h1>
+  <p id="user-email">Loading your info...</p>
+  <button onclick="signOut()" class="signout-button">Sign Out</button>
+
+  <h2 class="your-activity-title">Your Activity:</h2>
+  <div id="activity-list"></div>
+  <div id="pagination"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+
+  function signOut() {
+    supabaseClient.auth.signOut().then(() => {
+      window.location.href = "/login/";
+    });
+  }
+
+  const activityPerPage = 5;
+  let currentPage = 1;
+
+  async function fetchUserActivity() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    const userEmail = document.getElementById("user-email");
+    const activityList = document.getElementById("activity-list");
+    const pagination = document.getElementById("pagination");
+
+    if (!session || !session.user) {
+      userEmail.textContent = "❌ Not logged in. Redirecting...";
+      window.location.href = "/login/";
+      return;
+    }
+
+    userEmail.textContent = `${session.user.email}`;
+
+    const { data: comments, error } = await supabaseClient
+      .from("comments")
+      .select("*")
+      .eq("user_id", session.user.id)
+      .order("created_at", { ascending: false });
+
+    if (error || !comments) {
+      activityList.innerHTML = "<p>Failed to load your activity.</p>";
+      return;
+    }
+
+    // Pagination logic
+    const start = (currentPage - 1) * activityPerPage;
+    const end = start + activityPerPage;
+    const currentPageData = comments.slice(start, end);
+
+    activityList.innerHTML = currentPageData.map(comment => `
+      <div class="activity-item">
+        <p>💬 <strong>Commented:</strong> "${comment.content}"</p>
+        <small>${new Date(comment.created_at).toLocaleString()}</small>
+      </div>
+    `).join("");
+
+    const totalPages = Math.ceil(comments.length / activityPerPage);
+    pagination.innerHTML = "";
+    for (let i = 1; i <= totalPages; i++) {
+      pagination.innerHTML += `<button onclick="goToPage(${i})"${i === currentPage ? " disabled" : ""}>${i}</button>`;
+    }
+  }
+
+  function goToPage(page) {
+    currentPage = page;
+    fetchUserActivity();
+  }
+
+  document.addEventListener("DOMContentLoaded", fetchUserActivity);
+</script>

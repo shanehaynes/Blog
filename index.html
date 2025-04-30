@@ -2,25 +2,33 @@
 layout: default
 title: Home
 ---
-
 <h1>Welcome to Philosophy Incorporated</h1>
 
 <!-- Subtitle with Random Quote -->
 <div id="random-quote" style="font-style: italic; margin-bottom: 20px;"></div>
 
 <section>
-    <h2>Recent Posts</h2>
+    <h2 class="recents">Recent Posts</h2>
     <ul id="post-list">
         {% for post in paginator.posts %}
-            <li>
-                <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> -
-                <small>{{ post.date | date: "%B %d, %Y" }}</small>
-                <p>
-                  {{ post.content | strip_html | truncate: 200, "..." }}
-                </p>
+  <li class="home-post-item">
+    <div class="home-post-header">
+  <div class="home-post-header-top">
+    <a class="home-post-title" href="{{ post.url }}">{{ post.title }}</a>
+    <div class="home-post-icons" data-post-slug="{{ post.url }}">
+      <button class="home-like-button">❤️</button>
+      <span class="home-like-count">0</span>
+      <span class="divider">|</span>
+      <span class="comment-icon">💬</span>
+      <span class="home-comment-count">0</span>
+    </div>
+  </div>
+  <span class="home-post-meta">{{ post.date | date: "%B %d, %Y" }}</span>
+</div>
 
-            </li>
-        {% endfor %}
+    <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
+  </li>
+{% endfor %}
     </ul>
 </section>
 
@@ -59,3 +67,80 @@ title: Home
 
     document.getElementById("random-quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const posts = document.querySelectorAll(".home-post-icons");
+
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    const userId = session?.user?.id;
+
+    posts.forEach(async (postEl) => {
+      const slug = postEl.dataset.postSlug;
+
+      // Fetch like count
+      const { data: likes } = await supabaseClient
+        .from("likes")
+        .select("*")
+        .eq("post_slug", slug);
+
+      postEl.querySelector(".home-like-count").textContent = likes.length;
+
+      // Check if user liked
+      if (userId) {
+        const { data: existing } = await supabaseClient
+          .from("likes")
+          .select("id")
+          .eq("post_slug", slug)
+          .eq("user_id", userId)
+          .maybeSingle();
+
+        if (existing) {
+          postEl.querySelector(".home-like-button").classList.add("liked");
+        }
+      }
+
+      // Fetch comment count
+      const { data: comments } = await supabaseClient
+        .from("comments")
+        .select("*")
+        .eq("post_slug", slug);
+
+      postEl.querySelector(".home-comment-count").textContent = comments.length;
+
+      // Like button toggle
+      postEl.querySelector(".home-like-button").addEventListener("click", async () => {
+        if (!userId) {
+          alert("Please log in to like this post.");
+          return;
+        }
+
+        const liked = postEl.querySelector(".home-like-button").classList.contains("liked");
+
+        if (liked) {
+          const { data: existing } = await supabaseClient
+            .from("likes")
+            .select("id")
+            .eq("post_slug", slug)
+            .eq("user_id", userId)
+            .maybeSingle();
+
+          if (existing) {
+            await supabaseClient.from("likes").delete().eq("id", existing.id);
+            postEl.querySelector(".home-like-button").classList.remove("liked");
+          }
+        } else {
+          await supabaseClient.from("likes").insert([{ post_slug: slug, user_id: userId }]);
+          postEl.querySelector(".home-like-button").classList.add("liked");
+        }
+
+        // Refresh counts
+        const { data: updatedLikes } = await supabaseClient
+          .from("likes")
+          .select("*")
+          .eq("post_slug", slug);
+        postEl.querySelector(".home-like-count").textContent = updatedLikes.length;
+      });
+    });
+  });
+</script>
+

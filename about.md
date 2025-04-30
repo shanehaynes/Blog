@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "About Phil Inc."
+title: "About Phil. Inc."
 permalink: /about/
 ---
 

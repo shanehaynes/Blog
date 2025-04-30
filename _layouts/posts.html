@@ -3,19 +3,201 @@ layout: default
 ---
 
 <article class="blog-post">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">Published on {{ page.date | date: "%B %d, %Y" }} by {{ page.author }}</p>
+  <h1 class="post-title">{{ page.title }}</h1>
+  <p class="post-meta">Published on {{ page.date | date: "%B %d, %Y" }} by {{ page.author }}</p>
 
-    <div class="post-content">
-        {{ content }}
-    </div>
+  <div class="post-content">
+    {{ content }}
+  </div>
 
-    <div class="post-navigation">
-        {% if page.previous %}
-            <a class="prev-post" href="{{ site.baseurl }}{{ page.previous.url }}">← Previous: {{ page.previous.title }}</a>
-        {% endif %}
-        {% if page.next %}
-            <a class="next-post" href="{{ site.baseurl }}{{ page.next.url }}">Next: {{ page.next.title }} →</a>
-        {% endif %}
-    </div>
+  <div class="post-navigation">
+    {% if page.previous %}
+      <a class="prev-post" href="{{ site.baseurl }}{{ page.previous.url }}">← Previous: {{ page.previous.title }}</a>
+    {% endif %}
+    {% if page.next %}
+      <a class="next-post" href="{{ site.baseurl }}{{ page.next.url }}">Next: {{ page.next.title }} →</a>
+    {% endif %}
+  </div>
 </article>
+
+<!-- Post engagement bar -->
+<div id="post-engagement" class="engagement-bar">
+  <button id="like-button" class="like-button">❤️</button>
+  <span id="like-count">0</span>
+  <span class="divider">|</span>
+  <span class="comment-icon">💬</span>
+  <span id="comment-count">0</span>
+</div>
+
+<p id="like-message" class="like-message"></p>
+
+<!-- Comments Section -->
+<div id="comment-section" class="comment-section">
+  <h2>Comments</h2>
+  <div id="comment-list"></div>
+
+  <div id="comment-form" style="margin-top: 30px; display: none;">
+    <textarea id="comment-input" placeholder="Leave a comment..." rows="4"></textarea>
+    <br>
+    <button onclick="submitComment()">Post Comment</button>
+  </div>
+
+  <p id="comment-message"></p>
+</div>
+
+<script>
+
+  async function fetchLikeAndCommentCounts() {
+    const { data: likesData } = await supabaseClient
+      .from("likes")
+      .select("*", { count: "exact", head: false })
+      .eq("post_slug", postSlug);
+
+    const { data: commentsData } = await supabaseClient
+      .from("comments")
+      .select("*", { count: "exact", head: false })
+      .eq("post_slug", postSlug);
+
+    document.getElementById("like-count").textContent = likesData.length;
+    document.getElementById("comment-count").textContent = commentsData.length;
+  }
+
+  async function handleLike() {
+  const message = document.getElementById("like-message");
+  const likeButton = document.getElementById("like-button");
+
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  if (!session || !session.user) {
+    message.textContent = "Please log in or sign up to like this post.";
+    return;
+  }
+
+  // Check if already liked
+  const { data: existing, error: fetchError } = await supabaseClient
+    .from("likes")
+    .select("id")
+    .eq("post_slug", postSlug)
+    .eq("user_id", session.user.id)
+    .limit(1)
+    .maybeSingle();
+
+  if (fetchError) {
+    message.textContent = "Failed to check like status.";
+    return;
+  }
+
+  if (existing) {
+    // Unlike it
+    const { error: deleteError } = await supabaseClient
+      .from("likes")
+      .delete()
+      .eq("id", existing.id);
+
+    if (deleteError) {
+      message.textContent = "Error removing like.";
+    } else {
+      message.textContent = "Like removed.";
+      likeButton.classList.remove("liked");
+      fetchLikeAndCommentCounts();
+    }
+  } else {
+    // Like it
+    const { error: insertError } = await supabaseClient.from("likes").insert([
+      {
+        post_slug: postSlug,
+        user_id: session.user.id,
+      },
+    ]);
+
+    if (insertError) {
+      message.textContent = "Error liking post.";
+    } else {
+      message.textContent = "Liked!";
+      likeButton.classList.add("liked");
+      fetchLikeAndCommentCounts();
+    }
+  }
+}
+
+
+  async function submitComment() {
+    const input = document.getElementById("comment-input");
+    const message = document.getElementById("comment-message");
+    const content = input.value;
+
+    const { data: { session } } = await supabaseClient.auth.getSession();
+
+    if (!session) {
+      message.textContent = "❌ You must be logged in to comment.";
+      return;
+    }
+
+    const { error } = await supabaseClient.from("comments").insert([
+      {
+        post_slug: postSlug,
+        user_id: session.user.id,
+        content: content
+      }
+    ]);
+
+    if (error) {
+      message.textContent = error.message;
+    } else {
+      message.textContent = 'Comment posted!';
+      input.value = '';
+      loadComments();
+      fetchLikeAndCommentCounts(); // Also update comment count
+    }
+  }
+
+  async function loadComments() {
+    const { data, error } = await supabaseClient
+      .from("comments")
+      .select("*")
+      .eq("post_slug", postSlug)
+      .order("created_at", { ascending: true });
+
+    const list = document.getElementById("comment-list");
+    if (!list) return;
+    list.innerHTML = '';
+
+    if (data) {
+      data.forEach(comment => {
+        const el = document.createElement('div');
+        el.className = 'comment';
+        el.innerHTML = `
+          <p>${comment.content}</p>
+          <span>${new Date(comment.created_at).toLocaleString()}</span>
+        `;
+        list.appendChild(el);
+      });
+    }
+  }
+
+  async function checkAuthAndShowForm() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    const form = document.getElementById('comment-form');
+    if (session && session.user && form) {
+      form.style.display = 'block';
+    }
+
+    // Set heart as "liked" if already liked
+    const { data: liked } = await supabaseClient
+      .from("likes")
+      .select("id")
+      .eq("post_slug", postSlug)
+      .eq("user_id", session?.user?.id)
+      .limit(1);
+
+    if (liked && liked.length > 0) {
+      document.getElementById("like-button").classList.add("liked");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    fetchLikeAndCommentCounts();
+    loadComments();
+    checkAuthAndShowForm();
+    document.getElementById("like-button").addEventListener("click", handleLike);
+  });
+</script>

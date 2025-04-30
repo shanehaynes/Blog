@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 title: "Closeness and Complexity: Modal Reasoning in the Vicinity of Nash Equilibrium"
 date: 2025-02-17
 author: "Shane Haynes"
