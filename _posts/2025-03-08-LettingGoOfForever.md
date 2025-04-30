@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 title: "Letting Go of Forever"
 date: 2025-03-08
 author: "Shane Haynes"
