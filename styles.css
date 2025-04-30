@@ -12,13 +12,21 @@
 }
 
 /* Site title on the left */
-.site-title {
+.site-title{
     font-size: 28px;
     font-family: "Lora", serif;
     color: #222;
     text-decoration: none;
     margin-left: 5%;
 }
+
+.page-link {
+    font-size: 28px;
+    font-family: "Lora", serif;
+    color: #222;
+    text-decoration: none;
+    margin-right: 5%;
+ }
 
 .page-link{
     font-size: 28px;
