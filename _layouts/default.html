@@ -107,7 +107,7 @@
       const { data: { session } } = await supabaseClient.auth.getSession();
 
       if (!session) {
-        message.textContent = '❌ You must be logged in to comment.';
+        message.textContent = 'You must be logged in to comment.';
         return;
       }
 
@@ -120,9 +120,9 @@
       ]);
 
       if (error) {
-        message.textContent = '❌ ' + error.message;
+        message.textContent = error.message;
       } else {
-        message.textContent = '✅ Comment posted!';
+        message.textContent = 'Comment posted!';
         input.value = '';
         loadComments();
       }
