@@ -1,6 +1,6 @@
 ---
 layout: posts
-title: "Closeness and Complexity: Modal Reasoning in the Vicinity of Nash Equilibrium"
+title: "Evaluating Approximate Nash Equilibrium with Modal Logic"
 date: 2025-02-17
 author: "Shane Haynes"
 ---
