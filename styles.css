@@ -19,6 +19,9 @@
     text-decoration: none;
     margin-left: 5%;
 }
+#nav-profile-link{
+  margin-right: 5%;
+}
 
 .page-link {
     font-size: 28px;
@@ -28,12 +31,6 @@
     margin-right: 5%;
  }
 
-.page-link{
-    font-size: 28px;
-    font-family: "Lora", serif;
-    color: #222;
-    text-decoration: none;
-}
 .page-link:visited{
     color: #222;
 }
@@ -83,6 +80,10 @@ header {
     font-size: 18px;
 }
 
+.wrapper {
+  margin-top: 3%;
+}
+
 #post-list {
     list-style-type: none;
     padding: 0;
@@ -125,7 +126,7 @@ a:hover {
 }
 
 .pagination {
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .pagination a, .pagination strong {
@@ -150,6 +151,17 @@ footer {
     margin-top: 40px;
     padding: 15px;
     color: #777;
+}
+
+.about {
+    font-size: 28px;
+    font-family: "Lora", serif;
+    color: #222;
+    text-decoration: none;
+ }
+
+.about:visited{
+    color: #222;
 }
 
 h2{
