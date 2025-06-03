@@ -16,7 +16,7 @@ Even if AI fails to achieve much of what is prophesied, it has already achieved 
 
 #### A Working Definition
 
-**[[#Artificial Intelligence]]** refers to systems designed to perform tasks that typically require human cognitive abilities—such as perception, reasoning, language understanding, and learning. It encompasses a broad field, from rule-based systems to large-scale [[#Artificial Neural Networks]].
+**Artificial Intelligence** refers to systems designed to perform tasks that typically require human cognitive abilities—such as perception, reasoning, language understanding, and learning. It encompasses a broad field, from rule-based systems to large-scale Artificial Neural Networks.
 
 > *AI isn't a specific technology, but a goal -- that of making machines "intelligent."*
 
@@ -24,7 +24,7 @@ Even if AI fails to achieve much of what is prophesied, it has already achieved 
 
 #### AI Taxonomy
 
-What is Artificial Intelligence vs [[#Machine Learning]] vs [[#Deep Learning]] vs Artificial Neural Nets? Most confusion stems from conflation and misplaced distinctions between these concepts.
+What is Artificial Intelligence vs Machine Learning vs Deep Learning vs Artificial Neural Nets? Most confusion stems from conflation and misplaced distinctions between these concepts.
 
 | Term                                  | Description                                                                                     | Relationship           |
 | ------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------- |
@@ -39,9 +39,9 @@ What is Artificial Intelligence vs [[#Machine Learning]] vs [[#Deep Learning]] v
 
 #### Narrow AI vs General AI
 
-- **Narrow AI (i.e. [[#Artificial Narrow Intelligence]] , ANI)** refers to systems that excel at a specific task (e.g., language translation, image recognition, chess).
--  ** [[#Artificial General Intelligence]] (AGI)** describes a system with the ability to autonomously achieve goals across diverse domains, akin to human-level reasoning.
--  **[[#Artificial Superintelligence]] (ASI)** is hypothesized to exceed the capabilities of any human in all respects—cognitive, emotional, strategic.
+- **Narrow AI (i.e. Artificial Narrow Intelligence, ANI)** refers to systems that excel at a specific task (e.g., language translation, image recognition, chess).
+-  **Artificial General Intelligence (AGI)** describes a system with the ability to autonomously achieve goals across diverse domains, akin to human-level reasoning.
+-  **Artificial Superintelligence (ASI)** is hypothesized to exceed the capabilities of any human in all respects—cognitive, emotional, strategic.
 
 | Type          | Example          | Capabilities                                                |
 | ------------- | ---------------- | ----------------------------------------------------------- |
@@ -74,7 +74,7 @@ What is Artificial Intelligence vs [[#Machine Learning]] vs [[#Deep Learning]] v
 
 At the heart of most modern AI systems lies the **neural network**: a computational architecture inspired by the brain’s web of neurons, but governed entirely by mathematical operations.
 
-The most prominent structure today is the [[#Transformer]], which underpins models like GPT-4, Claude, and Gemini. Transformers excel in handling sequential data (like language), and their defining features are [[#Self Attention]] mechanisms and massive parallelization.
+The most prominent structure today is the Transformer, which underpins models like GPT-4, Claude, and Gemini. Transformers excel in handling sequential data (like language), and their defining features are Self Attention mechanisms and massive parallelization.
 
 Key architectural concepts:
 
@@ -90,13 +90,13 @@ Key architectural concepts:
 
 #### The Hardware of AI: Why Compute Matters
 
-AI’s rapid progress is inseparable from hardware acceleration. Traditional CPUs are ill-suited to deep learning because they operate serially. Enter the [[#Graphics Processing Unit]] (GPU) — originally designed for rendering video games, now repurposed to parallelize matrix operations across thousands of cores.
+AI’s rapid progress is inseparable from hardware acceleration. Traditional CPUs are ill-suited to deep learning because they operate serially. Enter the Graphics Processing Unit (GPU) — originally designed for rendering video games, now repurposed to parallelize matrix operations across thousands of cores.
 
 Key hardware concepts:
 
 - **GPU**: Optimized for simultaneous mathematical operations
 - **TPU (Tensor Processing Unit)**: Custom silicon built by Google specifically for AI workloads.
-- **[[#Compute Budge]]**: Refers to the total computational resources (often measured in FLOPs) used to train a model. GPT-4 has about [~2.1 × 10²⁵ FLOPs](https://klu.ai/blog/gpt-4-llm?utm_source=chatgpt.com).
+- **Compute Budget**: Refers to the total computational resources (often measured in FLOPs) used to train a model. GPT-4 has about [~2.1 × 10²⁵ FLOPs](https://klu.ai/blog/gpt-4-llm?utm_source=chatgpt.com).
 - **Energy Cost**: Training a state-of-the-art model can consume millions of dollars’ worth of electricity—an emerging ethical and environmental concern.
 
 > OpenAI's GPT-4 reportedly cost over $50 million to train—a consequence not just of data, but of compute.
