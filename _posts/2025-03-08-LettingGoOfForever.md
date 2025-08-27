@@ -27,9 +27,9 @@ Transience can evoke a sense of loss; a nausea that nothing we love endures. But
 
 ## Inescapable Conclusion
 
-It is worth remembering that to chase immortality, whether by conquering disease, suspending aging, or controlling every contingency, is not only futile but also, in a deeper sense, an act of self-negation. We are ephemeral precisely because we are alive; we are alive precisely because we are ephemeral. While the natural urge might be to run from this truth, perhaps a more harmonious path is to embrace it —to let that understanding permeate each action of every fleeting moment.
+It is worth remembering that to chase immortality, whether by conquering disease, suspending aging, or controlling every contingency, is not only futile but also, in a deeper sense, an act of self-negation. We are ephemeral precisely because we are alive; we are alive precisely because we are ephemeral. While the natural urge might be to run from this truth, perhaps a more harmonious path is to embrace it, to let that understanding permeate each action of every fleeting moment.
 
-Our day-to-day lives, then, become opportunities to notice how change both humbles and invigorates us. Impermanence need not be a dreary condemnation to oblivion but an ever-present invitation to see ourselves as part of a great, ongoing dance—a dance in which each step appears just long enough to meet the next, and where the vitality of life surges forth not in spite of change, but _because_ of it.
+Our day-to-day lives, then, become opportunities to notice how change both humbles and invigorates us. Impermanence need not be a dreary condemnation to oblivion but an ever-present invitation to see ourselves as part of a great, ongoing dance. A dance in which each step appears just long enough to meet the next, and where the vitality of life surges forth not in spite of change, but _because_ of it.
 
-It may be that the surest escape from “forever” is found not by transcending impermanence, but by cherishing it—accepting it as the fuel that moves the world and moves us. The seasons will change and so will we. In many ways, the change is the most profound reminder that we truly _are_ alive.
+It may be that the surest escape from “forever” is found not by transcending impermanence, but by cherishing it—accepting it as the fuel that moves the world and moves us. The seasons will change and so will we. In many ways, our change is the most profound reminder that we truly _are_ alive.
 
